@@ -2,7 +2,7 @@ const repo1 = document.getElementById("repo1");
 const repo2 = document.getElementById("repo2");
 const repo3 = document.getElementById("repo3");
 
-const defaultColorScheme = "dracula";
+const defaultColorScheme = "gruvbox";
 
 function formatDate(date) {
   const month = date.getMonth() + 1;
