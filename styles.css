@@ -1,0 +1,40 @@
+body {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+h1, p, li, a {
+  font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+  font-weight: normal;
+}
+
+#head {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#caption {
+  margin-top: 10px;
+}
+
+hr {
+  width: 30%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 1%;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: '→  ';
+}
+
+select {
+    padding: 10px;
+    border: 1px dashed;
+    border-radius: 5px;
+    appearance: none;
+    width: 7rem;
+    float: right;
+    margin-right: 2rem;
+}

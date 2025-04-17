@@ -1,0 +1,41 @@
+{
+  "dracula": {
+    "background": "#0e0e11",
+    "foreground": "#f8f8f3",
+    "link": {
+      "regular": "#50fa7b",
+      "visited": "#bd93f9"
+    },
+    "hr": "#f8f8f2"
+  },
+  "nord": {
+    "background": "#3b4252",
+    "header": "#81a1c1",
+    "foreground": "#d8dee9",
+    "link": {
+      "regular": "#a3be8c",
+      "visited": "#b48ead"
+    },
+    "hr": "#eceff4"
+  },
+  "gruvbox": {
+    "background": "#282828",
+    "header": "#b8bb26",
+    "foreground": "#ebdbb2",
+    "link": {
+      "regular": "#fb4934",
+      "visited": "#b16286"
+    },
+    "hr": "#d5c4a1"
+  },
+  "solarized": {
+    "background": "#002b36",
+    "header": "#eee8d5",
+    "foreground": "#93a1a1",
+    "link": {
+      "regular": "#859900",
+      "visited": "#6c71c4"
+    },
+    "hr": "#839496"
+  }
+}
