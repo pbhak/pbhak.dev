@@ -38,3 +38,8 @@ select {
     float: right;
     margin-right: 2rem;
 }
+
+#pronouns {
+  font-weight: normal;
+  font-size: large;
+}
