@@ -139,3 +139,26 @@ await fetch("https://stats.pbhak.hackclub.app/online")
       document.getElementById("slack-presence").innerText =
         " (currently online!)";
   });
+
+const age = new Date(new Date() - new Date("7/17/2010")).getFullYear() - 1970;
+
+document.getElementById("age").innerText = age;
+
+switch (age) {
+  case 14:
+  case 18:
+    document.getElementById("year").innerText = "freshman";
+    break;
+  case 15:
+  case 19:
+    document.getElementById("year").innerText = "sophomore";
+    break;
+  case 16:
+  case 20:
+    document.getElementById("year").innerText = "junior";
+    break;
+  case 17:
+  case 21:
+    document.getElementById("year").innerText = "senior";
+    break;
+}
