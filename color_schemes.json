@@ -2,6 +2,7 @@
   "dracula": {
     "background": "#0e0e11",
     "foreground": "#f8f8f3",
+    "secondary": "#ffb86c",
     "link": {
       "regular": "#50fa7b",
       "visited": "#bd93f9"
@@ -10,8 +11,9 @@
   },
   "nord": {
     "background": "#3b4252",
-    "header": "#81a1c1",
     "foreground": "#d8dee9",
+    "secondary": "#ebcb8b",
+    "header": "#81a1c1",
     "link": {
       "regular": "#a3be8c",
       "visited": "#b48ead"
@@ -20,8 +22,9 @@
   },
   "gruvbox": {
     "background": "#282828",
-    "header": "#b8bb26",
     "foreground": "#ebdbb2",
+    "secondary": "#458588",
+    "header": "#b8bb26",
     "link": {
       "regular": "#fb4934",
       "visited": "#b16286"
@@ -30,12 +33,24 @@
   },
   "solarized": {
     "background": "#002b36",
-    "header": "#eee8d5",
     "foreground": "#93a1a1",
+    "secondary": "#2aa198",
+    "header": "#eee8d5",
     "link": {
       "regular": "#859900",
       "visited": "#6c71c4"
     },
     "hr": "#839496"
+  },
+  "monokai": {
+    "background": "#2e2e2e",
+    "foreground": "#d6d6d6",
+    "secondary": "#797979",
+    "header": "#e87d3e",
+    "link": {
+      "regular": "#b4d273",
+      "visited": "#e87d3e"
+    },
+    "hr": "#797979"
   }
 }

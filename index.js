@@ -3,19 +3,32 @@ const repo2 = document.getElementById("repo2");
 const repo3 = document.getElementById("repo3");
 
 const defaultColorScheme = "gruvbox";
+let rateLimited = false;
 
 function formatDate(date) {
   const month = date.getMonth() + 1;
   const day = String(date.getDate()).padStart(2, "0");
   const year = String(date.getFullYear()).slice(-2);
 
-  return `${month}/${day}/${year}`;
+  if (day == new Date().getDate()) {
+    return "today";
+  } else if (day == new Date().getDate() - 1) {
+    return "yesterday";
+  } else {
+    return `${month}/${day}/${year}`;
+  }
 }
 
-function returnLinkElement(repoId) {
-  return `<a href='${reposJson[repoId].html_url}'>${
-    reposJson[repoId].description
-  } (last pushed ${formatDate(new Date(reposJson[repoId].pushed_at))})</a>`;
+function addLinkElement(repoId) {
+  const listElement = document.createElement("li");
+  const linkElement = document.createElement("a");
+  linkElement.setAttribute("href", reposJson[repoId].html_url);
+  linkElement.innerText = reposJson[repoId].description;
+  listElement.appendChild(linkElement);
+  listElement.append(
+    ` (last pushed ${formatDate(new Date(reposJson[repoId].pushed_at))})`
+  );
+  document.getElementById("repo-list").appendChild(listElement);
 }
 
 function setDefaultColorScheme() {
@@ -63,25 +76,45 @@ function changeColorScheme(colorSchemeObject) {
       .forEach(
         (element) => (element.style.color = colorSchemeObject.link.visited)
       );
+  // Change color of all elements with the secondary class to the secondary color specified
+  for (
+    let elementIndex = 0;
+    elementIndex < document.getElementsByClassName("secondary").length;
+    elementIndex++
+  ) {
+    document.getElementsByClassName("secondary")[elementIndex].style.color =
+      colorSchemeObject.secondary;
+  }
 }
 
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
 const repos = await fetch("https://api.github.com/users/pbhak/repos");
 const reposJson = await repos.json().then((json) => {
-  json.sort((repoA, repoB) => {
-    repoA = new Date(repoA.pushed_at);
-    repoB = new Date(repoB.pushed_at);
+  try {
+    json.sort((repoA, repoB) => {
+      repoA = new Date(repoA.pushed_at);
+      repoB = new Date(repoB.pushed_at);
 
-    return repoA > repoB ? -1 : 1;
-  });
+      return repoA > repoB ? -1 : 1;
+    });
 
-  return json;
+    return json;
+  } catch {
+    rateLimited = true;
+  }
 });
 
-// Take the latest 3 repositories I've pushed to and format them on the site
-repo1.innerHTML = returnLinkElement(0);
-repo2.innerHTML = returnLinkElement(1);
-repo3.innerHTML = returnLinkElement(2);
+if (rateLimited) {
+  repo1.innerText =
+    "..well, this is awkward. it looks like you just got rate limited by github. how odd.";
+  repo2.style.display = "none";
+  repo3.style.display = "none";
+} else {
+  // Take the latest 3 repositories I've pushed to and format them on the site
+  addLinkElement(0);
+  addLinkElement(1);
+  addLinkElement(2);
+}
 
 setDefaultColorScheme();
 
@@ -97,3 +130,12 @@ document.getElementById("color-changer").onchange = function () {
     })
     .catch((error) => console.error(`Error switching color schemes: ${error}`));
 };
+
+// Update Hack Club handle based on whether or not I'm online
+await fetch("https://stats.pbhak.hackclub.app/online")
+  .then((response) => response.json())
+  .then((data) => {
+    if (data)
+      document.getElementById("slack-presence").innerText =
+        " (currently online!)";
+  });

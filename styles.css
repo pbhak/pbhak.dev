@@ -37,9 +37,21 @@ select {
     width: 7rem;
     float: right;
     margin-right: 2rem;
+    text-align: center;
 }
 
 #pronouns {
   font-weight: normal;
   font-size: large;
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    margin-left: 15px;
+    margin-top: 7px;
+  }
+
+  select {
+    display: none; /* sadly, it just doesn't look right on mobile :( */
+  }
 }
