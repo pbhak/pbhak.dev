@@ -41,6 +41,7 @@ function setDefaultColorScheme() {
 function changeColorScheme(colorSchemeObject) {
   // Change page background color
   localStorage.setItem("theme", document.getElementById("color-changer").value);
+  console.log(`${document.getElementById("color-changer").value} written to localStorage`)
   document.getElementsByTagName("body")[0].style.backgroundColor =
     colorSchemeObject.background;
   // Change foreground color
@@ -130,10 +131,10 @@ const reposJson = await repos.json().then((json) => {
 });
 
 if (rateLimited) {
-  repo1.innerText =
+  const limited = document.createElement("li");
+  limited.innerText =
     "..well, this is awkward. it looks like you just got rate limited by github. how odd.";
-  repo2.style.display = "none";
-  repo3.style.display = "none";
+  document.getElementById("repo-list").appendChild(limited);
 } else {
   // Take the latest 3 repositories I've pushed to and format them on the site
   addLinkElement(0);

@@ -52,5 +52,60 @@
       "visited": "#49b7e6"
     },
     "hr": "#f8f8f3"
+  },
+  "ayu-dark": {
+    "background": "#0d1017",
+    "foreground": "#bfbdb6",
+    "secondary": "#ff8f40",
+    "header": "#39bae6",
+    "link": {
+      "regular": "#f26d78",
+      "visited": "#7f8962"
+    },
+    "hr": "#565b66"
+  },
+  "one-dark": {
+    "background": "#292c33",
+    "foreground": "#abb2bf",
+    "secondary": "#98c379",
+    "header": "#61afef",
+    "link": {
+      "regular": "#c678dd",
+      "visited": "#56b6c2"
+    },
+    "hr": "#abb2bf"
+  },
+  "ayu-light": {
+    "background": "#fcfcfc",
+    "foreground": "#5c6166",
+    "secondary": "#4cbf99",
+    "header": "#f2ae49",
+    "link": {
+      "regular": "#399ee6",
+      "visited": "#fa8d3e"
+    },
+    "hr": "#8a9199"
+  },
+  "one-light": {
+    "background": "#fafafa",
+    "foreground": "#393a42",
+    "secondary": "#5b78ea",
+    "header": "#cc6557",
+    "link": {
+      "regular": "#93359e",
+      "visited": "#6b9f59"
+    },
+    "hr": "#a0a1a7"
+  },
+  "solarized-light": {
+    "background": "#fbf6e5",
+    "foreground": "#8b9698",
+    "secondary": "#6e90cc",
+    "header": "#da4073",
+    "link": {
+      "regular": "#99a24f",
+      "visited": "#c4847a"
+    },
+    "hr": "#bcbfb9"
   }
 }
