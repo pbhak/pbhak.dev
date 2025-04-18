@@ -43,14 +43,14 @@
     "hr": "#839496"
   },
   "monokai": {
-    "background": "#2e2e2e",
-    "foreground": "#d6d6d6",
-    "secondary": "#797979",
-    "header": "#e87d3e",
+    "background": "#272823",
+    "foreground": "#cecfc3",
+    "secondary": "#b5df55",
+    "header": "#da4073",
     "link": {
-      "regular": "#b4d273",
-      "visited": "#e87d3e"
+      "regular": "#e1db83",
+      "visited": "#49b7e6"
     },
-    "hr": "#797979"
+    "hr": "#f8f8f3"
   }
 }

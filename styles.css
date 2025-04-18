@@ -51,7 +51,12 @@ select {
     margin-top: 7px;
   }
 
-  select {
-    display: none; /* sadly, it just doesn't look right on mobile :( */
-  }
+ #head {
+  font-size: 1.75rem;
+ }
+
+ select {
+  margin-top: 0.25rem;
+  margin-right: 1rem;
+ }
 }

@@ -2,7 +2,7 @@ const repo1 = document.getElementById("repo1");
 const repo2 = document.getElementById("repo2");
 const repo3 = document.getElementById("repo3");
 
-const defaultColorScheme = "gruvbox";
+const defaultColorScheme = localStorage.getItem("theme") ?? "gruvbox";
 let rateLimited = false;
 
 function formatDate(date) {
@@ -40,6 +40,7 @@ function setDefaultColorScheme() {
 
 function changeColorScheme(colorSchemeObject) {
   // Change page background color
+  localStorage.setItem("theme", document.getElementById("color-changer").value);
   document.getElementsByTagName("body")[0].style.backgroundColor =
     colorSchemeObject.background;
   // Change foreground color
@@ -85,6 +86,30 @@ function changeColorScheme(colorSchemeObject) {
     document.getElementsByClassName("secondary")[elementIndex].style.color =
       colorSchemeObject.secondary;
   }
+}
+
+// Update age and year based on...age and year
+const age = new Date(new Date() - new Date("7/17/2010")).getFullYear() - 1970;
+
+document.getElementById("age").innerText = age;
+
+switch (age) {
+  case 14:
+  case 18:
+    document.getElementById("year").innerText = "freshman";
+    break;
+  case 15:
+  case 19:
+    document.getElementById("year").innerText = "sophomore";
+    break;
+  case 16:
+  case 20:
+    document.getElementById("year").innerText = "junior";
+    break;
+  case 17:
+  case 21:
+    document.getElementById("year").innerText = "senior";
+    break;
 }
 
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
@@ -139,26 +164,3 @@ await fetch("https://stats.pbhak.hackclub.app/online")
       document.getElementById("slack-presence").innerText =
         " (currently online!)";
   });
-
-const age = new Date(new Date() - new Date("7/17/2010")).getFullYear() - 1970;
-
-document.getElementById("age").innerText = age;
-
-switch (age) {
-  case 14:
-  case 18:
-    document.getElementById("year").innerText = "freshman";
-    break;
-  case 15:
-  case 19:
-    document.getElementById("year").innerText = "sophomore";
-    break;
-  case 16:
-  case 20:
-    document.getElementById("year").innerText = "junior";
-    break;
-  case 17:
-  case 21:
-    document.getElementById("year").innerText = "senior";
-    break;
-}
