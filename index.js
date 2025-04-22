@@ -126,8 +126,6 @@ document.getElementById("color-changer").onchange = function () {
     .catch((error) => console.error(`Error switching color schemes: ${error}`));
 };
 
-menu.addEventListener("click", () => menu.classList.toggle("is-active"));
-
 // API calls or anything else that takes a variable amount of time goes below heere
 
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
