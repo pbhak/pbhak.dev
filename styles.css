@@ -1,16 +1,29 @@
+:root {
+  --background: #282828;
+  --foreground: #ebdbb2;
+  --secondary: #458588;
+  --header: #b8bb26;
+  --link-regular: #fb4934;
+  --link-visited: #b16286;
+  --hr: #d5c4a1;
+}
+
 body {
   margin-left: 40px;
   margin-top: 30px;
-}
-
-h1, p, li,  a {
   font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   font-weight: normal;
+  background-color: var(--background);
+}
+
+h1, p, li {
+  color: var(--foreground);
 }
 
 #head {
   font-weight: bold;
   margin-bottom: 0;
+  color: var(--header);
 }
 
 #caption {
@@ -23,6 +36,7 @@ hr {
   margin-bottom: 30px;
   margin-left: 1%;
   border-radius: 5px;
+  color: var(--hr);
 }
 
 ul {
@@ -38,6 +52,20 @@ select {
   float: right;
   margin-right: 2rem;
   text-align: center;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+a:link {
+  color: var(--link-regular);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+.secondary {
+  color: var(--secondary);
 }
 
 #pronouns {

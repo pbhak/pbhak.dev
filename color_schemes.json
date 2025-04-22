@@ -3,6 +3,7 @@
     "background": "#0e0e11",
     "foreground": "#f8f8f3",
     "secondary": "#ffb86c",
+    "header": "#f8f8f3",
     "link": {
       "regular": "#50fa7b",
       "visited": "#bd93f9"

@@ -1,4 +1,5 @@
 const defaultColorScheme = localStorage.getItem("theme") ?? "gruvbox";
+const root = document.querySelector(":root");
 let rateLimited = false;
 
 function formatDate(date) {
@@ -40,51 +41,13 @@ function changeColorScheme(colorSchemeObject) {
   console.log(
     `${document.getElementById("color-changer").value} written to localStorage`
   );
-  document.getElementsByTagName("body")[0].style.backgroundColor =
-    colorSchemeObject.background;
-  // Change foreground color
-  document
-    .querySelectorAll("h1, p, li, a")
-    .forEach((element) => (element.style.color = colorSchemeObject.foreground));
-  document.getElementById("color-changer").style.backgroundColor =
-    colorSchemeObject.background;
-  document.getElementById("color-changer").style.color =
-    colorSchemeObject.foreground;
-  // If the color scheme specifies colors for the head <h1> element and the <hr> elements, apply them
-  if (colorSchemeObject.header)
-    document.getElementById("head").style.color = colorSchemeObject.header;
-  if (colorSchemeObject.hr) {
-    for (
-      let elementIndex = 0;
-      elementIndex < document.getElementsByTagName("hr").length;
-      elementIndex++
-    ) {
-      document.getElementsByTagName("hr")[elementIndex].style.borderColor =
-        colorSchemeObject.hr;
-    }
-  }
-  // Change color of links, but only if the type of link to change is in the document
-  if (document.querySelector("a:link"))
-    document
-      .querySelectorAll("a:link")
-      .forEach(
-        (element) => (element.style.color = colorSchemeObject.link.regular)
-      );
-  if (document.querySelector("a:visited"))
-    document
-      .querySelectorAll("a:visited")
-      .forEach(
-        (element) => (element.style.color = colorSchemeObject.link.visited)
-      );
-  // Change color of all elements with the secondary class to the secondary color specified
-  for (
-    let elementIndex = 0;
-    elementIndex < document.getElementsByClassName("secondary").length;
-    elementIndex++
-  ) {
-    document.getElementsByClassName("secondary")[elementIndex].style.color =
-      colorSchemeObject.secondary;
-  }
+  root.style.setProperty("--background", colorSchemeObject.background);
+  root.style.setProperty("--foreground", colorSchemeObject.foreground);
+  root.style.setProperty("--secondary", colorSchemeObject.secondary);
+  root.style.setProperty("--header", colorSchemeObject.header);
+  root.style.setProperty("--link-regular", colorSchemeObject.link.regular);
+  root.style.setProperty("--link-visited", colorSchemeObject.link.visited);
+  root.style.setProperty("--hr", colorSchemeObject.hr);
 }
 
 // Update age and year based on...age and year
