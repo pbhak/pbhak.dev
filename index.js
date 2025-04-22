@@ -1,7 +1,3 @@
-const repo1 = document.getElementById("repo1");
-const repo2 = document.getElementById("repo2");
-const repo3 = document.getElementById("repo3");
-
 const defaultColorScheme = localStorage.getItem("theme") ?? "gruvbox";
 let rateLimited = false;
 
@@ -41,7 +37,9 @@ function setDefaultColorScheme() {
 function changeColorScheme(colorSchemeObject) {
   // Change page background color
   localStorage.setItem("theme", document.getElementById("color-changer").value);
-  console.log(`${document.getElementById("color-changer").value} written to localStorage`)
+  console.log(
+    `${document.getElementById("color-changer").value} written to localStorage`
+  );
   document.getElementsByTagName("body")[0].style.backgroundColor =
     colorSchemeObject.background;
   // Change foreground color
@@ -113,6 +111,25 @@ switch (age) {
     break;
 }
 
+setDefaultColorScheme();
+
+// Change color scheme based on the value of the #color-changer dropdown
+document.getElementById("color-changer").onchange = function () {
+  const colorScheme = this.value;
+
+  fetch("./color_schemes.json")
+    .then((response) => response.json())
+    .then((data) => {
+      if (!(colorScheme in data)) return;
+      changeColorScheme(data[colorScheme]);
+    })
+    .catch((error) => console.error(`Error switching color schemes: ${error}`));
+};
+
+menu.addEventListener("click", () => menu.classList.toggle("is-active"));
+
+// API calls or anything else that takes a variable amount of time goes below heere
+
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
 const repos = await fetch("https://api.github.com/users/pbhak/repos");
 const reposJson = await repos.json().then((json) => {
@@ -141,21 +158,6 @@ if (rateLimited) {
   addLinkElement(1);
   addLinkElement(2);
 }
-
-setDefaultColorScheme();
-
-// Change color scheme based on the value of the #color-changer dropdown
-document.getElementById("color-changer").onchange = function () {
-  const colorScheme = this.value;
-
-  fetch("./color_schemes.json")
-    .then((response) => response.json())
-    .then((data) => {
-      if (!(colorScheme in data)) return;
-      changeColorScheme(data[colorScheme]);
-    })
-    .catch((error) => console.error(`Error switching color schemes: ${error}`));
-};
 
 // Update Hack Club handle based on whether or not I'm online
 await fetch("https://stats.pbhak.hackclub.app/online")

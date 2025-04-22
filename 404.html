@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>page not found | pbhak.dev</title>
+  </head>
+  <body>
+    <h1 id="head">uh oh - looks like the page you requested doesn't exist.</h1>
+    <p>
+      well, that's weird. if this is supposed to be something else, then contact
+      me and let me know!
+    </p>
+    <a href="/">back home</a>
+
+    <script>
+      const colorScheme = localStorage.getItem("theme") ?? "gruvbox";
+      fetch("./color_schemes.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const colorSchemeObject = data[colorScheme];
+          document.getElementsByTagName("body")[0].style.backgroundColor =
+            colorSchemeObject.background;
+          document
+            .querySelectorAll("h1, p")
+            .forEach(
+              (element) => (element.style.color = colorSchemeObject.foreground)
+            );
+          if (colorSchemeObject.header)
+            document.getElementById("head").style.color =
+              colorSchemeObject.header;
+          if (document.querySelector("a:link"))
+            document
+              .querySelectorAll("a:link")
+              .forEach(
+                (element) =>
+                  (element.style.color = colorSchemeObject.link.regular)
+              );
+          if (document.querySelector("a:visited"))
+            document
+              .querySelectorAll("a:visited")
+              .forEach(
+                (element) =>
+                  (element.style.color = colorSchemeObject.link.visited)
+              );
+        });
+    </script>
+  </body>
+</html>

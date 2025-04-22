@@ -3,8 +3,8 @@ body {
   margin-top: 30px;
 }
 
-h1, p, li, a {
-  font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+h1, p, li,  a {
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   font-weight: normal;
 }
 
@@ -26,18 +26,18 @@ hr {
 }
 
 ul {
-  list-style-type: '→  ';
+  list-style-type: "→  ";
 }
 
 select {
-    padding: 10px;
-    border: 1px dashed;
-    border-radius: 5px;
-    appearance: none;
-    width: 7rem;
-    float: right;
-    margin-right: 2rem;
-    text-align: center;
+  padding: 10px;
+  border: 1px dashed;
+  border-radius: 5px;
+  appearance: none;
+  width: 7rem;
+  float: right;
+  margin-right: 2rem;
+  text-align: center;
 }
 
 #pronouns {
@@ -55,13 +55,13 @@ optgroup {
     margin-top: 7px;
   }
 
- #head {
-  font-size: 1.75rem;
- }
+  #head {
+    font-size: 1.75rem;
+  }
 
- select {
-  margin-top: 0.25rem;
-  margin-right: 1rem;
-  width: 6rem;
- }
+  select {
+    margin-top: 0.25rem;
+    margin-right: 1rem;
+    width: 6rem;
+  }
 }
