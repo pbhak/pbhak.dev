@@ -121,7 +121,7 @@ if (rateLimited) {
 }
 
 // Update Hack Club handle based on whether or not I'm online
-await fetch("https://stats.pbhak.hackclub.app/online")
+await fetch("https://utilities.pbhak.dev/online")
   .then((response) => response.json())
   .then((data) => {
     if (data)
