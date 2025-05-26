@@ -20,7 +20,11 @@ function addLinkElement(repoId) {
   const listElement = document.createElement("li");
   const linkElement = document.createElement("a");
   linkElement.setAttribute("href", reposJson[repoId].html_url);
-  linkElement.innerText = reposJson[repoId].description;
+  if (reposJson[repoId].description === "") {
+    linkElement.innerText = reposJson[repoId].name;
+  } else {
+    linkElement.innerText = reposJson[repoId].description;
+  }
   listElement.appendChild(linkElement);
   listElement.append(
     ` (last pushed ${formatDate(new Date(reposJson[repoId].pushed_at))})`
