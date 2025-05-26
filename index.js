@@ -20,10 +20,10 @@ function addLinkElement(repoId) {
   const listElement = document.createElement("li");
   const linkElement = document.createElement("a");
   linkElement.setAttribute("href", reposJson[repoId].html_url);
-  if (reposJson[repoId].description === "") {
-    linkElement.innerText = reposJson[repoId].name;
-  } else {
+  if (reposJson[repoId].description) {
     linkElement.innerText = reposJson[repoId].description;
+  } else {
+    linkElement.innerText = reposJson[repoId].name;
   }
   listElement.appendChild(linkElement);
   listElement.append(
