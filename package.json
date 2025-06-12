@@ -1,0 +1,10 @@
+{
+  "name": "pbhak.dev",
+  "version": "1.0.0",
+  "description": "![Hackatime Badge](https://hackatime-badge.hackclub.com/U07V1ND4H0Q/hackatime-badge)",
+  "scripts": {
+    "build": "node src/a.js"
+  },
+  "author": "",
+  "license": "MIT"
+}
