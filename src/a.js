@@ -8,7 +8,7 @@ function getDirectories(source) {
 }
 
 // Define the file path (relative to the root of the project)
-const filePath = path.join(process.cwd() + '/public/writings', '../../output/static', 'hi.html');
+const filePath = path.join(process.cwd() + '/public/writings', 'hi.html');
 
 // Define the HTML content
 const content = '<h1>Hi!</h1>';
