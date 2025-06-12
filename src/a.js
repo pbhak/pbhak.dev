@@ -7,7 +7,7 @@ function getDirectories(source) {
     .map(dirent => dirent.name);
 }
 
-const directoryPath ='../../output'; // Replace with your directory path
+const directoryPath ='../..'; // Replace with your directory path
 const directories = getDirectories(directoryPath);
 console.log(directories);
 
