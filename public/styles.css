@@ -11,7 +11,7 @@
 body {
   margin-left: 40px;
   margin-top: 30px;
-  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+  font-family: 'Trajan Pro', Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   font-weight: normal;
   background-color: var(--background);
 }

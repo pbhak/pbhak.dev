@@ -34,7 +34,7 @@ function addLinkElement(repoId) {
 
 function setDefaultColorScheme() {
   document.getElementById("color-changer").value = defaultColorScheme;
-  fetch("./color_schemes.json")
+  fetch("../src/color_schemes.json")
     .then((response) => response.json())
     .then((data) => changeColorScheme(data[defaultColorScheme]));
 }
