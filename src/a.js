@@ -7,12 +7,8 @@ function getDirectories(source) {
     .map(dirent => dirent.name);
 }
 
-const directoryPath ='../../vercel/output'; // Replace with your directory path
-const directories = getDirectories(process.cwd());
-console.log(directories);
-
 // Define the file path (relative to the root of the project)
-const filePath = path.join(__dirname, '../../output/static', 'hi.html');
+const filePath = path.join(process.cwd() + '/public/writings', '../../output/static', 'hi.html');
 
 // Define the HTML content
 const content = '<h1>Hi!</h1>';
