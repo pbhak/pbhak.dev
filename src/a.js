@@ -1,8 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 
+function getDirectories(source) {
+  return fs.readdirSync(source, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name);
+}
+
+const directoryPath ='../..'; // Replace with your directory path
+const directories = getDirectories(directoryPath);
+console.log(directories);
+
 // Define the file path (relative to the root of the project)
-const filePath = path.join(__dirname, 'public', 'hi.html');
+const filePath = path.join(__dirname, '../../output/static', 'hi.html');
 
 // Define the HTML content
 const content = '<h1>Hi!</h1>';
