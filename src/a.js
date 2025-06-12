@@ -8,7 +8,7 @@ function getDirectories(source) {
 }
 
 const directoryPath ='../../vercel/output'; // Replace with your directory path
-const directories = getDirectories(directoryPath);
+const directories = getDirectories(process.cwd());
 console.log(directories);
 
 // Define the file path (relative to the root of the project)
