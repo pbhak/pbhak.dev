@@ -7,7 +7,7 @@ const templatePath = path.join(process.cwd() + "/scripts", "template.html");
 
 // Get thd base names of all Markdown files in /content/writings
 const writingsFiles = fs
-  .readdirSync(path.join(process.cwd(), "public"))
+  .readdirSync(path.join(process.cwd(), "content", "writings"))
   .filter((fileName) => fileName.endsWith(".md"))
   .map((fileName) => path.basename(fileName, ".md"));
 
@@ -17,8 +17,14 @@ console.info(
 
 writingsFiles.forEach((fileName) => {
   // Define the file path (relative to the root of the project)
-  const filePath = path.join(process.cwd() + "/public/writings", `${fileName}.html`);
-  const inputPath = path.join(process.cwd() + "/content/writings", `${fileName}.md`);
+  const filePath = path.join(
+    process.cwd() + "/public/writings",
+    `${fileName}.html`
+  );
+  const inputPath = path.join(
+    process.cwd() + "/content/writings",
+    `${fileName}.md`
+  );
 
   // Define the HTML content
   const content = marked.parse(fs.readFileSync(inputPath, "utf8"));
