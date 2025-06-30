@@ -1,5 +1,9 @@
 const defaultColorScheme = localStorage.getItem("theme") ?? "gruvbox";
 const root = document.querySelector(":root");
+
+const SUNNYVALE_LAT = 37.371111;
+const SUNNYVALE_LONG = -122.0375;
+
 let rateLimited = false;
 
 function formatDate(date) {
@@ -132,3 +136,13 @@ await fetch("https://utilities.pbhak.dev/online")
       document.getElementById("slack-presence").innerText =
         " (currently online!)";
   });
+
+// Get approximate location of user and update location text with a tooltip based on it
+const locationSpan = document.getElementById("location");
+
+// Calculate distance between
+const userApproximateLocation = navigator.geolocation.getCurrentPosition(
+  (positionObject) => {
+
+  }
+);

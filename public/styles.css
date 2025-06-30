@@ -16,7 +16,9 @@ body {
   background-color: var(--background);
 }
 
-h1, p, li {
+h1,
+p,
+li {
   color: var(--foreground);
 }
 
@@ -76,6 +78,21 @@ a:visited {
 optgroup {
   text-align: left;
 }
+
+/* Writings-specific things below this comment */
+#writings-list {
+  list-style: none;
+  padding: 0;
+}
+
+#writings-list li {
+  padding: 20px;
+  /* margin: 15px; */
+  padding-left: 0;
+  /* border: 1px solid var(--foreground); */
+}
+
+/* Media queries */
 
 @media only screen and (max-width: 500px) {
   body {
