@@ -6,5 +6,8 @@
     "build": "node scripts/build.js"
   },
   "author": "pbhak",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^16.0.0"
+  }
 }
