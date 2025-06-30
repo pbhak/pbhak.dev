@@ -28,15 +28,17 @@ fs.mkdir(path.dirname(filePath), { recursive: true }, (err) => {
       return;
     }
 
-    data.toString().replace("<!-- CONTENT -->", content);
-
     // Write the content to the file
-    fs.writeFile(filePath, data, (writeErr) => {
-      if (writeErr) {
-        console.error("Error writing file:", writeErr);
-      } else {
-        console.log("File created successfully at", filePath);
+    fs.writeFile(
+      filePath,
+      data.toString().replace("<!-- CONTENT -->", content),
+      (writeErr) => {
+        if (writeErr) {
+          console.error("Error writing file:", writeErr);
+        } else {
+          console.log("File created successfully at", filePath);
+        }
       }
-    });
+    );
   });
 });
