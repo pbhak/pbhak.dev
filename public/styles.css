@@ -81,12 +81,13 @@ optgroup {
 
 /* Writings-specific things below this comment */
 #writings-list {
-  list-style: none;
-  padding: 0;
+  list-style-type: "→  ";
 }
 
 #writings-list li {
+  text-decoration: underline;
   padding: 20px;
+  padding-bottom: 0px;
   /* margin: 15px; */
   padding-left: 0;
   /* border: 1px solid var(--foreground); */
