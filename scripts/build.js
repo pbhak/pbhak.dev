@@ -25,7 +25,7 @@ console.info(
 );
 
 // <ul> element that will be dynamically populated, closed, then added to the main HTMLL file later
-const listElement = "<ul id='writings-list'>\n";
+let listElement = "<ul id='writings-list'>\n";
 
 writingsFiles.forEach((fileName) => {
   // Define the file path (relative to the root of the project)
