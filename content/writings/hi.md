@@ -1,6 +1,6 @@
 ---
-title: hi
-e: hi
+title: Hiya!
+slug: hi
 ---
 
 # Hi!

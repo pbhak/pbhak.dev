@@ -37,7 +37,7 @@ writingsFiles.forEach((fileName) => {
   // The matter object contains frontmatter as well as the Markdown data itself
   const matterObject = matter(fs.readFileSync(inputPath, "utf8"));
 
-  const content = matterObject.content.trim(); // remove trailing newline at start of file
+  const content = marked.parse(matterObject.content.trim()); // remove trailing newline at start of file
   const data = matterObject.data; // Frontmatter
 
   const filePath = path.join(
