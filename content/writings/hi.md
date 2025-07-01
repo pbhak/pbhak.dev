@@ -5,6 +5,7 @@ slug: hi
 
 # Hi!
 hey there! my name is parneel, but you probably know that already. this only exists to test my writings page functionality.
-if you see this, please message me asap to delete this.
+if you're seeing this, you probably shouldn't be seeing this - maybe drop a message so i remember to delete this?
 
-*thank you!*
+thanks a bunch! 
+*- pbhak*
