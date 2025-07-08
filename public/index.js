@@ -139,10 +139,3 @@ await fetch("https://utilities.pbhak.dev/online")
 
 // Get approximate location of user and update location text with a tooltip based on it
 const locationSpan = document.getElementById("location");
-
-// Calculate distance between
-const userApproximateLocation = navigator.geolocation.getCurrentPosition(
-  (positionObject) => {
-
-  }
-);
