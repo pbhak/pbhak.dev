@@ -46,7 +46,7 @@ function setDefaultColorScheme() {
 function changeColorScheme(colorSchemeObject) {
   // Change page background color
   localStorage.setItem("theme", document.getElementById("color-changer").value);
-  console.log(
+  console.info(
     `${document.getElementById("color-changer").value} written to localStorage`
   );
   root.style.setProperty("--background", colorSchemeObject.background);
