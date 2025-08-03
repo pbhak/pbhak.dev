@@ -24,7 +24,7 @@ console.info(
   `Found ${writingsFiles.length} Markdown file(s) in /content/writings`
 );
 
-// <ul> element that will be dynamically populated, closed, then added to the main HTMLL file later
+// <ul> element that will be dynamically populated, closed, then added to the main HTML file later
 let listElement = "<ul id='writings-list'>\n";
 
 writingsFiles.forEach((fileName) => {
