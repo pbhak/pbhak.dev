@@ -98,6 +98,11 @@ optgroup {
   /* border: 1px solid var(--foreground); */
 }
 
+::selection {
+  color: var(--background);
+  background-color: var(--secondary);
+}
+
 /* Media queries */
 
 @media only screen and (max-width: 500px) {
