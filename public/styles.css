@@ -65,6 +65,7 @@ select {
   text-align: center;
   background-color: var(--background);
   color: var(--foreground);
+  cursor: pointer;
 }
 
 a:link {
