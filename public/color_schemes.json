@@ -1,4 +1,15 @@
 {
+  "catpuccin-mocha": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "secondary": "#a6e3a1",
+    "header": "#f38ba8",
+    "link": {
+      "regular": "#cba6f7",
+      "visited": "#f2cdcd"
+    },
+    "hr": "#a6adc8"
+  },
   "dracula": {
     "background": "#0e0e11",
     "foreground": "#f8f8f3",
