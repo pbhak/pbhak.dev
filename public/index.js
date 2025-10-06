@@ -146,8 +146,9 @@ try {
   if (mostRecentSong) {
     const isNowPlaying = mostRecentSong["@attr"]?.nowplaying;
     musicStatusElement.textContent =
+      "(" +
       (isNowPlaying ? "now playing: " : "last played: ") +
-      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`;
+      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name})`;
   } else {
     console.warn("No recent track data available.");
   }
