@@ -143,10 +143,15 @@ try {
   const mostRecentSong = (await lastfmReq.json()).recenttracks.track[0];
   // const musicStatusElement = document.getElementById("music-status");
 
-  console.info(
-    (mostRecentSong["@attr"].nowplaying ? "Now playing: " : "Last played: ") +
-      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
-  );
+  if (mostRecentSong) {
+    const isNowPlaying = mostRecentSong["@attr"]?.nowplaying;
+    console.info(
+      (isNowPlaying ? "Now playing: " : "Last played: ") +
+        `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
+    );
+  } else {
+    console.warn("No recent track data available.");
+  }
 } catch (e) {
   console.error(`Error fetching last.fm data: ${e}`);
 }
