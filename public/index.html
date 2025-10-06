@@ -1,90 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="./index.js" type="module" defer></script>
-    <title>home | pbhak.dev</title>
-  </head>
-  <body>
-    <select id="color-changer">
-      <optgroup label="dark">
-        <option value="catpuccin-mocha">catpuccin</option>
-        <option value="dracula">dracula</option>
-        <option value="gruvbox">gruvbox</option>
-        <option value="monokai">monokai</option>
-        <option value="nord">nord</option>
-        <option value="ayu-dark">ayu dark</option>
-        <option value="solarized">solarized dark</option>
-        <option value="one-dark">one dark</option>
-      </optgroup>
 
-      <optgroup label="light">
-        <option value="ayu-light">ayu light</option>
-        <option value="one-light">one light</option>
-        <option value="solarized-light">solarized light</option>
-      </optgroup>
-    </select>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="./index.js" type="module" defer></script>
+  <title>home | pbhak.dev</title>
+</head>
 
-    <h1 id="head">
-      hi! i'm parneel :) <span id="pronouns" class="secondary">(he/him)</span>
-    </h1>
+<body>
+  <select id="color-changer">
+    <optgroup label="dark">
+      <option value="catpuccin-mocha">catpuccin</option>
+      <option value="dracula">dracula</option>
+      <option value="gruvbox">gruvbox</option>
+      <option value="monokai">monokai</option>
+      <option value="nord">nord</option>
+      <option value="ayu-dark">ayu dark</option>
+      <option value="solarized">solarized dark</option>
+      <option value="one-dark">one dark</option>
+    </optgroup>
 
-    <p id="caption"><em>i do stuff. sometimes.</em></p>
+    <optgroup label="light">
+      <option value="ayu-light">ayu light</option>
+      <option value="one-light">one light</option>
+      <option value="solarized-light">solarized light</option>
+    </optgroup>
+  </select>
 
-    <hr />
+  <h1 id="head">
+    hi! i'm parneel :) <span id="pronouns" class="secondary">(he/him)</span>
+  </h1>
 
-    <p>
-      i'm a <span id="age"></span> year old <span id="year"></span> based in
-      <span id="location">sunnyvale, california</span>.
-    </p>
-    <p>
-      when i'm not coding, you can usually find me with my dog, reading, or
-      playing the piano!
-    </p>
+  <p id="caption"><em>i do stuff. sometimes.</em></p>
 
-    <hr />
+  <hr />
 
-    <p>here are some projects i've been working on:</p>
-    <ul>
-      <li>
-        an API to give users
-        <a href="http://hackatime.hackclub.com">Hackatime</a>
-        shields.io badges, built with Bun and Express.js
-      </li>
-      <li>a cool Slack bot for my channel on the Hack Club Slack</li>
-      <li>a program that simulates keyboard input based on inbound MIDI data</li>
-      <li><a href="https://github.com/pbhak/pbhak.dev">this site!</a></li>
-    </ul>
+  <p>
+    i'm a <span id="age"></span> year old <span id="year"></span> based in
+    <span id="location">sunnyvale, california</span>.
+  </p>
+  <p>
+    when i'm not coding, you can usually find me with my dog, reading,
+    <span id="music-status">listening to music</span>, or playing the piano!
+  </p>
 
-    <p>here are some recent repositories i've pushed to!</p>
-    <ul id="repo-list"></ul>
+  <hr />
 
-    <p>
-      most of my time is spent reading cool articles, coding (obviously), messing around with my camera, or
-      talking with people on the Hack Club Slack —
-      there's not much i enjoy more than taking something i love and helping other people love it too :)
-    </p>
-    <p>
-      <a href="http://hackclub.com" class="secondary"
-        >(wondering what Hack Club is?)</a
-      >
-    </p>
+  <p>here are some projects i've been working on:</p>
+  <ul>
+    <li>
+      an API to give users
+      <a href="http://hackatime.hackclub.com">Hackatime</a>
+      shields.io badges, built with Bun and Express.js
+    </li>
+    <li>a cool Slack bot for my channel on the Hack Club Slack</li>
+    <li>a program that simulates keyboard input based on inbound MIDI data</li>
+    <li><a href="https://github.com/pbhak/pbhak.dev">this site!</a></li>
+  </ul>
 
-    <hr />
+  <p>here are some recent repositories i've pushed to!</p>
+  <ul id="repo-list"></ul>
 
-    <p>looking to contact me? go ahead, i'd love to have a chat!</p>
+  <p>
+    most of my time is spent reading cool articles, coding (obviously), messing around with my camera, or
+    talking with people on the Hack Club Slack —
+    there's not much i enjoy more than taking something i love and helping other people love it too :)
+  </p>
+  <p>
+    <a href="http://hackclub.com" class="secondary">(wondering what Hack Club is?)</a>
+  </p>
 
-    <ul>
-      <li>email - hi [at] pbhak [dot] dev</li>
-      <li>github - <a href="http://github.com/pbhak">@pbhak</a></li>
-      <li>
-        hack club slack -
-        <a href="https://hackclub.slack.com/team/U07V1ND4H0Q">@pbhak</a>
-        <span id="slack-presence"></span>
-      </li>
-    </ul>
-    <!-- <a href="https://pbhak.dev"><img src="8831.png" id="display-button" title="woah look a button!"></a> -->
-  </body>
+  <hr />
+
+  <p>looking to contact me? go ahead, i'd love to have a chat!</p>
+
+  <ul>
+    <li>email - hi [at] pbhak [dot] dev</li>
+    <li>github - <a href="http://github.com/pbhak">@pbhak</a></li>
+    <li>
+      hack club slack -
+      <a href="https://hackclub.slack.com/team/U07V1ND4H0Q">@pbhak</a>
+      <span id="slack-presence"></span>
+    </li>
+  </ul>
+  <!-- <a href="https://pbhak.dev"><img src="8831.png" id="display-button" title="woah look a button!"></a> -->
+</body>
+
 </html>

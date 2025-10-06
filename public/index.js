@@ -97,7 +97,7 @@ document.getElementById("color-changer").onchange = function () {
     .catch((error) => console.error(`Error switching color schemes: ${error}`));
 };
 
-// API calls or anything else that takes a variable amount of time goes below heere
+// API calls or anything else that takes a variable amount of time goes below here
 
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
 const repos = await fetch("https://api.github.com/users/pbhak/repos");
@@ -137,5 +137,17 @@ await fetch("https://utilities.pbhak.dev/online")
         " (currently online!)";
   });
 
-// Get approximate location of user and update location text with a tooltip based on it
-const locationSpan = document.getElementById("location");
+// Get last.fm status from my utilities endpoint
+try {
+  const mostRecentSong = await (
+    await fetch("https://utilities.pbhak.dev/lastfm")
+  ).json().recenttracks.track[0];
+  // const musicStatusElement = document.getElementById("music-status");
+
+  console.info(
+    (mostRecentSong["@attr"].nowplaying ? "Now playing: " : "Last played: ") +
+      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
+  );
+} catch (e) {
+  console.error(`Error fetching last.fm data: ${e}`);
+}
