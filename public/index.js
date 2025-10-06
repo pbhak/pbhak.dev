@@ -139,9 +139,8 @@ await fetch("https://utilities.pbhak.dev/online")
 
 // Get last.fm status from my utilities endpoint
 try {
-  const mostRecentSong = await (
-    await fetch("https://utilities.pbhak.dev/lastfm").json()
-  ).recenttracks.track[0];
+  const lastfmReq = await fetch("https://utilities.pbhak.dev/lastfm");
+  const mostRecentSong = (await lastfmReq.json()).recenttracks.track[0];
   // const musicStatusElement = document.getElementById("music-status");
 
   console.info(
