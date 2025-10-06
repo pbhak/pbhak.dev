@@ -138,16 +138,12 @@ await fetch("https://utilities.pbhak.dev/online")
   });
 
 // Get last.fm status from my utilities endpoint
-try {
-  const mostRecentSong = await (
-    await fetch("https://utilities.pbhak.dev/lastfm")
-  ).json().recenttracks.track[0];
-  // const musicStatusElement = document.getElementById("music-status");
+const mostRecentSong = await (
+  await fetch("https://utilities.pbhak.dev/lastfm")
+).json().recenttracks.track[0];
+// const musicStatusElement = document.getElementById("music-status");
 
-  console.info(
-    (mostRecentSong["@attr"].nowplaying ? "Now playing: " : "Last played: ") +
-      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
-  );
-} catch (e) {
-  console.error(`Error fetching last.fm data: ${e}`);
-}
+console.info(
+  (mostRecentSong["@attr"].nowplaying ? "Now playing: " : "Last played: ") +
+    `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
+);
