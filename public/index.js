@@ -141,14 +141,13 @@ await fetch("https://utilities.pbhak.dev/online")
 try {
   const lastfmReq = await fetch("https://utilities.pbhak.dev/lastfm");
   const mostRecentSong = (await lastfmReq.json()).recenttracks.track[0];
-  // const musicStatusElement = document.getElementById("music-status");
+  const musicStatusElement = document.getElementById("music-status");
 
   if (mostRecentSong) {
     const isNowPlaying = mostRecentSong["@attr"]?.nowplaying;
-    console.info(
-      (isNowPlaying ? "Now playing: " : "Last played: ") +
-        `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`
-    );
+    musicStatusElement.textContent =
+      (isNowPlaying ? "now playing: " : "last played: ") +
+      `${mostRecentSong.artist["#text"]} - ${mostRecentSong.name}`;
   } else {
     console.warn("No recent track data available.");
   }
