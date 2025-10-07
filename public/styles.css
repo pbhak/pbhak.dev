@@ -89,23 +89,8 @@ optgroup {
   text-align: left;
 }
 
-/* Writings-specific things below this comment */
-#writings-list {
-  list-style-type: "→  ";
-}
-
-#writings-list li {
-  text-decoration: underline;
-  padding: 20px;
-  padding-bottom: 0px;
-  /* margin: 15px; */
-  padding-left: 0;
-  /* border: 1px solid var(--foreground); */
-}
-
-::selection {
-  color: var(--background);
-  background-color: var(--secondary);
+#music-status {
+  color: var(--secondary);
 }
 
 /* Media queries */
