@@ -97,6 +97,8 @@ document.getElementById("color-changer").onchange = function () {
     .catch((error) => console.error(`Error switching color schemes: ${error}`));
 };
 
+document.addEventListener('keydown', (event) => { console.log('Key pressed:', event.key); });
+
 // API calls or anything else that takes a variable amount of time goes below here
 
 // Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
