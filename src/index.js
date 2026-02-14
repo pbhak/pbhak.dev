@@ -1,9 +1,6 @@
 const defaultColorScheme = localStorage.getItem("theme") ?? "gruvbox";
 const root = document.querySelector(":root");
 
-const SUNNYVALE_LAT = 37.371111;
-const SUNNYVALE_LONG = -122.0375;
-
 let rateLimited = false;
 
 function formatDate(date) {
@@ -31,7 +28,7 @@ function addLinkElement(repoId) {
   }
   listElement.appendChild(linkElement);
   listElement.append(
-    ` (last pushed ${formatDate(new Date(reposJson[repoId].pushed_at))})`
+    ` (last pushed ${formatDate(new Date(reposJson[repoId].pushed_at))})`,
   );
   document.getElementById("repo-list").appendChild(listElement);
 }
@@ -47,7 +44,7 @@ function changeColorScheme(colorSchemeObject) {
   // Change page background color
   localStorage.setItem("theme", document.getElementById("color-changer").value);
   console.info(
-    `${document.getElementById("color-changer").value} written to localStorage`
+    `${document.getElementById("color-changer").value} written to localStorage`,
   );
   root.style.setProperty("--background", colorSchemeObject.background);
   root.style.setProperty("--foreground", colorSchemeObject.foreground);
@@ -99,7 +96,7 @@ document.getElementById("color-changer").onchange = function () {
 
 // API calls or anything else that takes a variable amount of time goes below here
 
-// Fetch all repositories I own, then use a custom sorting function to sort them by last pushed.
+// Fetch all repositories I own, then use a custom sorting function to sort them by last pushed
 const repos = await fetch("https://api.github.com/users/pbhak/repos");
 const reposJson = await repos.json().then((json) => {
   try {
