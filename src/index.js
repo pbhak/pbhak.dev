@@ -55,10 +55,8 @@ function changeColorScheme(colorSchemeObject) {
   root.style.setProperty("--hr", colorSchemeObject.hr);
 }
 
-// Update age and year based on...age and year
+// Update year based on age
 const age = new Date(new Date() - new Date("7/17/2010")).getFullYear() - 1970;
-
-document.getElementById("age").innerText = age;
 
 switch (age) {
   case 14:
