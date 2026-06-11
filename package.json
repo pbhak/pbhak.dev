@@ -1,14 +1,17 @@
 {
-  "name": "pbhak.dev",
-  "version": "1.0.0",
-  "description": "my site!",
-  "scripts": {
-    "build": "node scripts/build.js"
+  "name": "pbhak-dev",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "author": "pbhak",
-  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
   "dependencies": {
-    "gray-matter": "^4.0.3",
-    "marked": "^16.0.0"
+    "astro": "^6.4.6"
   }
 }
