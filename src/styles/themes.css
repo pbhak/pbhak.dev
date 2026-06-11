@@ -1,0 +1,109 @@
+:root[data-theme="catpuccin-mocha"] {
+  --background: #1e1e2e;
+  --foreground: #cdd6f4;
+  --secondary: #a6e3a1;
+  --header: #f38ba8;
+  --hr: #a6adc8;
+  --link: #cba6f7;
+  --link-visited: #f2cdcd;
+}
+
+:root[data-theme="dracula"] {
+  --background: #0e0e11;
+  --foreground: #f8f8f3;
+  --secondary: #ffb86c;
+  --header: #f8f8f3;
+  --hr: #f8f8f2;
+  --link: #50fa7b;
+  --link-visited: #bd93f9;
+}
+
+:root[data-theme="nord"] {
+  --background: #3b4252;
+  --foreground: #d8dee9;
+  --secondary: #ebcb8b;
+  --header: #81a1c1;
+  --hr: #eceff4;
+  --link: #a3be8c;
+  --link-visited: #b48ead;
+}
+
+:root[data-theme="gruvbox"] {
+  --background: #282828;
+  --foreground: #ebdbb2;
+  --secondary: #458588;
+  --header: #b8bb26;
+  --hr: #d5c4a1;
+  --link: #fb4934;
+  --link-visited: #b16286;
+}
+
+:root[data-theme="solarized"] {
+  --background: #002b36;
+  --foreground: #93a1a1;
+  --secondary: #2aa198;
+  --header: #eee8d5;
+  --hr: #839496;
+  --link: #859900;
+  --link-visited: #6c71c4;
+}
+
+:root[data-theme="monokai"] {
+  --background: #272823;
+  --foreground: #cecfc3;
+  --secondary: #b5df55;
+  --header: #da4073;
+  --hr: #f8f8f3;
+  --link: #e1db83;
+  --link-visited: #49b7e6;
+}
+
+:root[data-theme="ayu-dark"] {
+  --background: #0d1017;
+  --foreground: #bfbdb6;
+  --secondary: #ff8f40;
+  --header: #39bae6;
+  --hr: #565b66;
+  --link: #f26d78;
+  --link-visited: #7f8962;
+}
+
+:root[data-theme="one-dark"] {
+  --background: #292c33;
+  --foreground: #abb2bf;
+  --secondary: #98c379;
+  --header: #61afef;
+  --hr: #abb2bf;
+  --link: #c678dd;
+  --link-visited: #56b6c2;
+}
+
+:root[data-theme="ayu-light"] {
+  --background: #fcfcfc;
+  --foreground: #5c6166;
+  --secondary: #4cbf99;
+  --header: #f2ae49;
+  --hr: #8a9199;
+  --link: #399ee6;
+  --link-visited: #fa8d3e;
+}
+
+:root[data-theme="one-light"] {
+  --background: #fafafa;
+  --foreground: #393a42;
+  --secondary: #5b78ea;
+  --header: #cc6557;
+  --hr: #a0a1a7;
+  --link: #93359e;
+  --link-visited: #6b9f59;
+}
+
+:root[data-theme="solarized-light"] {
+  --background: #fbf6e5;
+  --foreground: #8b9698;
+  --secondary: #6e90cc;
+  --header: #da4073;
+  --hr: #bcbfb9;
+  --link: #99a24f;
+  --link-visited: #c4847a;
+}
