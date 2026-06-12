@@ -11,11 +11,11 @@ type DisplayRepo = Repo & {
 }
 
 let rateLimited = false;
-const res = await fetch("https://api.github.com/users/pbhak/repos");
+const req = await fetch("https://api.github.com/users/pbhak/repos");
 let repos: DisplayRepo[] = [];
 
 try {
-  const json: Repo[] = await res.json();
+  const json: Repo[] = await req.json();
   json.sort((a, b) => 
     new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
   );
@@ -57,7 +57,7 @@ try {
     </p>
   ) : (
     <ul>
-      {(repos as DisplayRepo[]).map((repo) => (
+      {repos.map((repo) => (
         <li>
           <a href={repo.html_url}>{repo.description}</a> (last pushed {repo.pushedLabel})
         </li>

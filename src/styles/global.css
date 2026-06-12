@@ -4,7 +4,6 @@ body {
   font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   font-weight: normal;
   background-color: var(--background);
-  width: 85%;
 }
 
 h1,
@@ -16,6 +15,7 @@ h6,
 p,
 li {
   color: var(--foreground);
+  width: 85%;
 }
 
 .head {
@@ -56,7 +56,7 @@ select {
 }
 
 a:link {
-  color: var(--link-regular);
+  color: var(--link);
 }
 
 a:visited {
@@ -88,7 +88,7 @@ optgroup {
     margin-top: 7px;
   }
 
-  #head {
+  .head {
     font-size: 1.75rem;
   }
 

@@ -1,0 +1,108 @@
+---
+export const prerender = false;
+
+import Layout from "../layouts/Layout.astro";
+import RepoList from "../components/RepoList.astro";
+import ColorChanger from "../components/ColorChanger.astro";
+
+function getAcademicYear(age: number): string {
+  if ([14, 18].includes(age)) return "freshman";
+  if ([15, 19].includes(age)) return "sophomore";
+  if ([16, 20].includes(age)) return "junior";
+  if ([17, 21].includes(age)) return "senior";
+
+  return "";
+}
+
+const today = new Date(),
+  birthdate = new Date("2010-07-17");
+const hasBirthdayPassed =
+  today.getMonth() > birthdate.getMonth() ||
+  (today.getMonth() === birthdate.getMonth() &&
+    today.getDate() >= birthdate.getDate());
+
+const age =
+  today.getFullYear() - birthdate.getFullYear() - (hasBirthdayPassed ? 0 : 1);
+
+let academicYear = getAcademicYear(age);
+
+const slackReq = await fetch("https://utilities.pbhak.dev/online");
+const isOnline: boolean = await slackReq.json();
+
+const lastFmReq = await fetch("https://utilities.pbhak.dev/lastfm");
+const mostRecentSong = (await lastFmReq.json()).recenttracks.track[0];
+const isNowPlaying = mostRecentSong["@attr"]?.nowplaying;
+---
+
+<Layout title="home">
+  <ColorChanger />
+  <h1 class="head">
+    hi! i'm parneel :) <span id="pronouns" class="secondary">(he/him)</span>
+  </h1>
+  <p class="caption"><em>i do stuff, sometimes.</em></p>
+
+  <hr />
+
+  <p>
+    i'm a {academicYear} based in
+    <span id="location">Sunnyvale, California</span>.
+  </p>
+  <p>
+    you can usually find me coding, with my dog, reading, playing the piano, or
+    listening to music!
+    {
+      mostRecentSong && (
+        <i id="music-status">
+          ({isNowPlaying ? "now playing" : "last played"}:
+          {mostRecentSong.artist["#text"]} - {mostRecentSong.name})
+        </i>
+      )
+    }
+  </p>
+
+  <hr />
+
+  <p>here are some projects i've been working on:</p>
+  <ul>
+    <li>
+      an API to give users
+      <a href="http://hackatime.hackclub.com">Hackatime</a>
+      shields.io badges, built with Bun and Express.js
+    </li>
+    <li>
+      a Slack bot for my channel on the Hack Club Slack that automates things
+      for me and contains other quality-of-life features
+    </li>
+    <li>a web app that simulates keyboard input based on inbound MIDI data</li>
+    <li><a href="https://github.com/pbhak/pbhak.dev">this site!</a></li>
+  </ul>
+
+  <p>here are some recent repositories i've pushed to!</p>
+  <RepoList />
+
+  <p>
+    among quite a few other things, i like reading cool articles about topics
+    that interest me, working on new projects, messing around with my camera, or
+    talking with people on the Hack Club Slack — there's not much i enjoy more
+    than talking about something i love and helping other people love it too :)
+  </p>
+  <p>
+    <a href="http://hackclub.com" class="secondary">
+      (wondering what Hack Club is?)
+    </a>
+  </p>
+
+  <hr />
+
+  <p>looking to contact me? go ahead, i'd love to have a chat!</p>
+
+  <ul>
+    <li>email - hi [at] pbhak [dot] dev</li>
+    <li>github - <a href="http://github.com/pbhak">@pbhak</a></li>
+    <li>
+      hack club slack -
+      <a href="https://hackclub.slack.com/team/U07V1ND4H0Q">@pbhak</a>
+      {isOnline && <span> (currently online!)</span>}
+    </li>
+  </ul>
+</Layout>

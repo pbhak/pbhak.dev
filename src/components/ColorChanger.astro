@@ -18,9 +18,13 @@
 </select>
 
 <script>
-  document.getElementById("color-changer")!.onchange = (event) => {
-    document.documentElement.dataset.theme = (
-      event.target as HTMLSelectElement
-    ).value;
+  const colorSelect = document.getElementById(
+    "color-changer",
+  ) as HTMLSelectElement;
+  colorSelect.value = localStorage.getItem("theme") ?? "gruvbox";
+  colorSelect.onchange = (event) => {
+    const themeName = (event.target as HTMLSelectElement).value;
+    document.documentElement.dataset.theme = themeName;
+    localStorage.setItem("theme", themeName);
   };
 </script>
