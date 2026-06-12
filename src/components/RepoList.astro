@@ -10,7 +10,7 @@ type DisplayRepo = Repo & {
   pushedLabel: string;
 }
 
-let rateLimited = true;
+let rateLimited = false;
 const res = await fetch("https://api.github.com/users/pbhak/repos");
 let repos: DisplayRepo[] = [];
 

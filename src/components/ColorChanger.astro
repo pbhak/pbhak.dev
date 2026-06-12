@@ -1,0 +1,26 @@
+<select id="color-changer">
+  <optgroup label="dark">
+    <option value="catpuccin-mocha">catpuccin</option>
+    <option value="dracula">dracula</option>
+    <option value="gruvbox">gruvbox</option>
+    <option value="monokai">monokai</option>
+    <option value="nord">nord</option>
+    <option value="ayu-dark">ayu dark</option>
+    <option value="solarized">solarized dark</option>
+    <option value="one-dark">one dark</option>
+  </optgroup>
+
+  <optgroup label="light">
+    <option value="ayu-light">ayu light</option>
+    <option value="one-light">one light</option>
+    <option value="solarized-light">solarized light</option>
+  </optgroup>
+</select>
+
+<script>
+  document.getElementById("color-changer")!.onchange = (event) => {
+    document.documentElement.dataset.theme = (
+      event.target as HTMLSelectElement
+    ).value;
+  };
+</script>
