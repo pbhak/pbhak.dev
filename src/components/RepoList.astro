@@ -1,0 +1,67 @@
+---
+interface Repo {
+  name: string;
+  html_url: string;
+  description?: string;
+  pushed_at: string;
+}
+
+type DisplayRepo = Repo & {
+  pushedLabel: string;
+}
+
+let rateLimited = true;
+const res = await fetch("https://api.github.com/users/pbhak/repos");
+let repos: DisplayRepo[] = [];
+
+try {
+  const json: Repo[] = await res.json();
+  json.sort((a, b) => 
+    new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+  );
+
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  repos = json.slice(0, 3).map(repo => {
+    const pushed = new Date(repo.pushed_at);
+    let pushedLabel: string;
+
+    if (pushed.toDateString() === today.toDateString()) pushedLabel = 'today';
+    else if (pushed.toDateString() === yesterday.toDateString()) pushedLabel = 'yesterday';
+    else {
+      const month = pushed.getMonth() + 1;
+      const day = pushed.getDate().toString().padStart(2, "0");
+      const year = pushed.getFullYear().toString().slice(-2);
+
+      pushedLabel = `${month}/${day}/${year}`;
+    }
+
+    return {
+      ...repo,
+      description: repo.description ?? repo.name,
+      pushedLabel
+    };
+  });
+} catch {
+  rateLimited = true;
+}
+---
+
+{
+  rateLimited ? (
+    <p>
+      (..well, this is awkward. it looks like you just got rate limited by
+      github. how odd.)
+    </p>
+  ) : (
+    <ul>
+      {(repos as DisplayRepo[]).map((repo) => (
+        <li>
+          <a href={repo.html_url}>{repo.description}</a> (last pushed {repo.pushedLabel})
+        </li>
+      ))}
+    </ul>
+  )
+}
