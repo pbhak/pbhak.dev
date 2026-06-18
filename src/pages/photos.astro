@@ -15,7 +15,7 @@ const photos = loadPhotos();
 ---
 
 <Layout title="photos">
-  <p>here's some photos i've taken over the years!</p>
+  <p>here's some photos i've taken over the years! <a href="/">back home</a></p>
 
   <div class="gallery">
     {photos.map((photo) => <Image src={photo} alt="" />)}
