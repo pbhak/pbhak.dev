@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+function loadPhotos(): ImageMetadata[] {
+  const imageModules = import.meta.glob(
+    "../photos/**/*.{jpg,JPG}",
+    { eager: true },
+  ) as Record<string, { default: ImageMetadata }>;
+  return Object.values(imageModules).map((img) => img.default);
+}
+
+const photos = loadPhotos();
+---
+
+<Layout title="photos">
+  <p>here's some photos i've taken over the years!</p>
+
+  <div class="gallery">
+    {photos.map((photo) => <Image src={photo} alt="" />)}
+  </div>
+</Layout>
+
+<style>
+  .gallery {
+    column-count: 4;
+    column-gap: 8px;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: auto;
+    break-inside: avoid;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  @media (min-width: 600px) {
+    .gallery {
+      column-count: 2;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .gallery {
+      column-count: 3;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .gallery {
+      column-count: 4;
+    }
+  }
+</style>
