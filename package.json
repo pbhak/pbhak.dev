@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^10.0.8",
-    "astro": "^6.4.6"
+    "astro": "^6.4.6",
+    "exifreader": "^4.41.0"
   }
 }
