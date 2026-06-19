@@ -23,8 +23,12 @@ const photos = loadPhotos();
 </Layout>
 
 <style>
+  body {
+    margin-left: 10px;
+  }
+
   .gallery {
-    column-count: 4;
+    column-count: 1;
     column-gap: 8px;
   }
 
@@ -36,19 +40,19 @@ const photos = loadPhotos();
     margin-bottom: 8px;
   }
 
-  @media (min-width: 600px), (max-width: 500px) {
+  @media (min-width: 480px) {
     .gallery {
       column-count: 2;
     }
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 760px) {
     .gallery {
       column-count: 3;
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1024px) {
     .gallery {
       column-count: 4;
     }
