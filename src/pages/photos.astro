@@ -5,7 +5,7 @@ import type { ImageMetadata } from "astro";
 
 function loadPhotos(): ImageMetadata[] {
   const imageModules = import.meta.glob(
-    "../photos/**/*.{jpg,JPG}",
+    "../content/photos/**/*.{jpg,JPG}",
     { eager: true },
   ) as Record<string, { default: ImageMetadata }>;
   return Object.values(imageModules).map((img) => img.default);
@@ -23,10 +23,6 @@ const photos = loadPhotos();
 </Layout>
 
 <style>
-  body {
-    margin-left: 10px;
-  }
-
   .gallery {
     column-count: 1;
     column-gap: 8px;
@@ -38,6 +34,10 @@ const photos = loadPhotos();
     break-inside: avoid;
     display: block;
     margin-bottom: 8px;
+  }
+
+  .gallery img:hover {
+  
   }
 
   @media (min-width: 480px) {
