@@ -40,6 +40,7 @@ const { recipe } = Astro.props;
   </ul>
 
   <script>
+    requestAnimationFrame(() => document.body.classList.add("ready"));
     document
       .querySelectorAll<HTMLLIElement>("#ingredient-list li")
       .forEach((li) =>
@@ -59,6 +60,29 @@ const { recipe } = Astro.props;
     cursor: pointer;
     opacity: 1;
     transition: opacity 100ms ease;
+    position: relative;
+    width: fit-content;
+  }
+
+  #ingredient-list li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  body.ready #ingredient-list li::after {
+    transition: transform 80ms ease;
+  }
+
+  #ingredient-list li.checked::after {
+    transform: scaleX(1);
   }
 
   #ingredient-list li:hover:not(.checked) {
@@ -71,7 +95,6 @@ const { recipe } = Astro.props;
 
   #ingredient-list li.checked {
     opacity: 0.6;
-    text-decoration: line-through;
   }
 
   #ingredient-list li:not(.checked) .marker {
