@@ -1,23 +1,10 @@
 import { glob } from "astro/loaders";
-import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
-
-// TODO make quantity units an enum?
-const quantitySchema = z.object({ amount: z.number(), unit: z.string() })
-const ingredientSchema = z.object({
-  name: z.string(),
-  imperial: quantitySchema,
-  metric: quantitySchema.optional(),
-  note: z.string().optional(),
-  optional: z.boolean().default(false)
-})
+import { recipeSchema } from "./schemas/recipe";
 
 const recipes = defineCollection({
-  loader: glob({ base: "./src/content/recipes", pattern: "**/*.{md, mdx}" }),
-  schema: z.object({
-    name: z.string(),
-    ingredients: z.array(ingredientSchema)
-  }),
+  loader: glob({ base: "./src/content/recipes", pattern: "**/*.{yml,yaml}" }),
+  schema: recipeSchema,
 });
 
 export const collections = { recipes };
