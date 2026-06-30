@@ -1,7 +1,7 @@
 ---
-import { render } from "astro:content";
 import { getCollection } from "astro:content";
-import Layout from '../../layouts/Layout.astro'
+import Layout from "../../layouts/Layout.astro";
+import type { Ingredient, Quantity } from "../../schemas/recipe";
 
 export async function getStaticPaths() {
   const recipes = await getCollection("recipes");
@@ -11,10 +11,74 @@ export async function getStaticPaths() {
   }));
 }
 
+function formatQuantity(quantity: Quantity): string {
+  return quantity.amount + (quantity.unit ? ` ${quantity.unit}` : "");
+}
+
+function getIngredientString(ingredient: Ingredient): string {
+  const metric = ingredient.metric
+    ? `(${formatQuantity(ingredient.metric)})`
+    : "";
+  const note = ingredient.note ? `, ${ingredient.note}` : " ";
+  const optional = ingredient.optional ? " - optional" : "";
+  return `${formatQuantity(ingredient.imperial)} ${metric} ${ingredient.name + note} ${optional}`;
+}
+
 const { recipe } = Astro.props;
-const { Content } = await render(recipe);
 ---
 
-<Layout title={recipe.data.name}>
-  <Content />
+<Layout title={recipe.data.title}>
+  <h3>Ingredients</h3>
+  <ul id="ingredient-list">
+    {
+      recipe.data.ingredients.map((ingredient) => (
+        <li>
+          [ <span class="marker">∗</span> ] {getIngredientString(ingredient)}
+        </li>
+      ))
+    }
+  </ul>
+
+  <script>
+    document
+      .querySelectorAll<HTMLLIElement>("#ingredient-list li")
+      .forEach((li) =>
+        li.addEventListener("click", () => li.classList.toggle("checked")),
+      );
+  </script>
 </Layout>
+
+<style>
+  #ingredient-list {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  #ingredient-list li {
+    margin: 6px 0;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 100ms ease;
+  }
+
+  #ingredient-list li:hover:not(.checked) {
+    opacity: 0.8;
+  }
+
+  #ingredient-list li:not(.checked) {
+    text-decoration: none;
+  }
+
+  #ingredient-list li.checked {
+    opacity: 0.6;
+    text-decoration: line-through;
+  }
+
+  #ingredient-list li:not(.checked) .marker {
+    visibility: hidden;
+  }
+
+  #ingredient-list li:is(.checked, :hover) .marker {
+    visibility: visible;
+  }
+</style>

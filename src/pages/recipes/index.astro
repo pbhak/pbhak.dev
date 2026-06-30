@@ -10,7 +10,7 @@ const recipes = await getCollection("recipes");
     {
       recipes.map((recipe) => (
         <li>
-          <a href={`/recipes/${recipe.id}`}>{recipe.data.name}</a>
+          <a href={`/recipes/${recipe.id}`}>{recipe.data.title}</a>
         </li>
       ))
     }
