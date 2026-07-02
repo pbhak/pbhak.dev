@@ -1,24 +1,60 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import exifr from "exifr";
+import { readFile } from "node:fs/promises";
+import { resolve } from "path";
+import Layout from "../layouts/Layout.astro";
 
-function loadPhotos(): ImageMetadata[] {
-  const imageModules = import.meta.glob(
+type Photo = ImageMetadata & { dateTaken: Date };
+
+async function loadPhotos(): Promise<Photo[]> {
+  const imageModules = import.meta.glob<ImageMetadata>(
     "../content/photos/**/*.{jpg,JPG}",
-    { eager: true },
-  ) as Record<string, { default: ImageMetadata }>;
-  return Object.values(imageModules).map((img) => img.default);
+    {
+      eager: true,
+      import: "default",
+    },
+  );
+  const images = await Promise.all(
+    Object.entries(imageModules).map(async ([path, imageMetadata]) => {
+      const file = await readFile(resolve(import.meta.dirname, path));
+      const exif: { DateTimeOriginal: Date } = await exifr.parse(file, [
+        "DateTimeOriginal",
+      ]);
+      return {
+        ...imageMetadata,
+        dateTaken: exif ? exif.DateTimeOriginal : new Date(),
+      };
+    }),
+  );
+  // sort in reverse chronological order
+  return images.sort((a, b) => b.dateTaken.getTime() - a.dateTaken.getTime());
 }
 
-const photos = loadPhotos();
+const photos = await loadPhotos();
 ---
 
 <Layout title="photos">
-  <p>here's some photos i've taken over the years! <a href="/">(back home)</a></p>
+  <p>
+    here's some photos i've taken over the years! <a href="/">(back home)</a>
+  </p>
 
   <div class="gallery">
-    {photos.map((photo) => <Image src={photo} alt="" />)}
+    {
+      photos.map((photo) => (
+        <Image
+          src={photo}
+          alt=""
+          format="webp"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 480px) 100vw,
+                 (max-width: 760px) 50vw,
+                 (max-width: 1024px) 33vw, 
+                 25vw"
+        />
+      ))
+    }
   </div>
 </Layout>
 
@@ -34,10 +70,6 @@ const photos = loadPhotos();
     break-inside: avoid;
     display: block;
     margin-bottom: 8px;
-  }
-
-  .gallery img:hover {
-  
   }
 
   @media (min-width: 480px) {
