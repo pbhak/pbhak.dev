@@ -1,0 +1,107 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import type { Ingredient, Quantity } from "../../schemas/recipe";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return recipes.map((recipe) => ({
+    params: { id: recipe.id },
+    props: { recipe },
+  }));
+}
+
+function formatQuantity(quantity: Quantity): string {
+  return quantity.amount + (quantity.unit ? ` ${quantity.unit}` : "");
+}
+
+function getIngredientString(ingredient: Ingredient): string {
+  const metric = ingredient.metric
+    ? `(${formatQuantity(ingredient.metric)})`
+    : "";
+  const note = ingredient.note ? `, ${ingredient.note}` : " ";
+  const optional = ingredient.optional ? " - optional" : "";
+  return `${formatQuantity(ingredient.imperial)} ${metric} ${ingredient.name + note} ${optional}`;
+}
+
+const { recipe } = Astro.props;
+---
+
+<Layout title={recipe.data.title}>
+  <h3>Ingredients</h3>
+  <ul id="ingredient-list">
+    {
+      recipe.data.ingredients.map((ingredient) => (
+        <li>
+          [ <span class="marker">∗</span> ] {getIngredientString(ingredient)}
+        </li>
+      ))
+    }
+  </ul>
+
+  <script>
+    requestAnimationFrame(() => document.body.classList.add("ready"));
+    document
+      .querySelectorAll<HTMLLIElement>("#ingredient-list li")
+      .forEach((li) =>
+        li.addEventListener("click", () => li.classList.toggle("checked")),
+      );
+  </script>
+</Layout>
+
+<style>
+  #ingredient-list {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  #ingredient-list li {
+    margin: 6px 0;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 100ms ease;
+    position: relative;
+    width: fit-content;
+  }
+
+  #ingredient-list li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  body.ready #ingredient-list li::after {
+    transition: transform 80ms ease;
+  }
+
+  #ingredient-list li.checked::after {
+    transform: scaleX(1);
+  }
+
+  #ingredient-list li:hover:not(.checked) {
+    opacity: 0.8;
+  }
+
+  #ingredient-list li:not(.checked) {
+    text-decoration: none;
+  }
+
+  #ingredient-list li.checked {
+    opacity: 0.6;
+  }
+
+  #ingredient-list li:not(.checked) .marker {
+    visibility: hidden;
+  }
+
+  #ingredient-list li:is(.checked, :hover) .marker {
+    visibility: visible;
+  }
+</style>
