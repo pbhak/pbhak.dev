@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import exifr from "exifr";
 import { readFile } from "node:fs/promises";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import Layout from "../layouts/Layout.astro";
 
 type Photo = ImageMetadata & { dateTaken: Date };
@@ -18,7 +18,7 @@ async function loadPhotos(): Promise<Photo[]> {
   );
   const images = await Promise.all(
     Object.entries(imageModules).map(async ([path, imageMetadata]) => {
-      const file = await readFile(resolve(import.meta.dirname, path));
+      const file = await readFile(resolve(process.cwd(), "src/pages", path));
       const exif: { DateTimeOriginal: Date } = await exifr.parse(file, [
         "DateTimeOriginal",
       ]);
