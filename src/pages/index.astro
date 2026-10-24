@@ -27,7 +27,12 @@ const age =
 let academicYear = getAcademicYear(age);
 
 const slackReq = await fetch("https://utilities.pbhak.dev/online");
-const isOnline: boolean = await slackReq.json();
+let isOnline = false;
+try {
+  isOnline = await slackReq.json();
+} catch (error) {
+  console.error("could not fetch utilities state: ", error);
+}
 
 const lastFmReq = await fetch("https://utilities.pbhak.dev/lastfm");
 const mostRecentSong = (await lastFmReq.json()).recenttracks.track[0];
@@ -83,9 +88,9 @@ const isNowPlaying = mostRecentSong["@attr"]?.nowplaying;
   <p>
     among quite a few other things, i like reading cool articles about topics
     that interest me, working on new projects, messing around with my camera
-    <i>(you can see some of my photos <a href="/photos">here</a>)</i>, or talking with
-    people on the Hack Club Slack — there's not much i enjoy more than talking
-    about something i love and helping other people love it too :)
+    <i>(you can see some of my photos <a href="/photos">here</a>)</i>, or
+    talking with people on the Hack Club Slack — there's not much i enjoy more
+    than talking about something i love and helping other people love it too :)
   </p>
   <p>
     <a href="http://hackclub.com" class="secondary">
