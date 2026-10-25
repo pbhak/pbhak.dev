@@ -3,37 +3,66 @@ interface Repo {
   name: string;
   html_url: string;
   description?: string;
-  pushed_at: string;
+  pushed_at: string | null;
 }
 
 type DisplayRepo = Repo & {
   pushedLabel: string;
 }
 
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Los_Angeles",
+  year: "numeric",
+  month: "numeric",
+  day: "2-digit",
+});
+
+function getFormattedDate(date: Date) {
+  const parts = Object.fromEntries(
+    dateFormatter.formatToParts(date).map(({ type, value }) => [type, value]),
+  );
+
+  return {
+    key: `${parts.year}-${parts.month}-${parts.day}`,
+    month: parts.month,
+    day: parts.day,
+    year: parts.year,
+  };
+}
+
 let rateLimited = false;
-const req = await fetch("https://api.github.com/users/pbhak/repos");
 let repos: DisplayRepo[] = [];
 
 try {
-  const json: Repo[] = await req.json();
-  json.sort((a, b) => 
+  const req = await fetch("https://api.github.com/users/pbhak/repos");
+  if (!req.ok) throw new Error(`github request failed: ${req.status}`);
+
+  const json: unknown = await req.json();
+  if (!Array.isArray(json)) throw new Error("invalid response from github");
+
+  const validRepos = (json as Repo[]).filter((repo): repo is Repo & { pushed_at: string } => {
+    return repo.pushed_at !== null && !Number.isNaN(new Date(repo.pushed_at).getTime());
+  });
+
+  validRepos.sort((a, b) =>
     new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
   );
 
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
+  const today = getFormattedDate(new Date());
+  const yesterday = getFormattedDate(
+    new Date(Date.UTC(Number(today.year), Number(today.month) - 1, Number(today.day) - 1, 12)),
+  );
 
-  repos = json.slice(0, 3).map(repo => {
-    const pushed = new Date(repo.pushed_at);
+  repos = validRepos.slice(0, 3).map(repo => {
+    const pushed = getFormattedDate(new Date(repo.pushed_at));
     let pushedLabel: string;
 
-    if (pushed.toDateString() === today.toDateString()) pushedLabel = 'today';
-    else if (pushed.toDateString() === yesterday.toDateString()) pushedLabel = 'yesterday';
+    if (pushed.key === today.key) pushedLabel = 'today';
+    else if (pushed.key === yesterday.key) pushedLabel = 'yesterday';
     else {
-      const month = pushed.getMonth() + 1;
-      const day = pushed.getDate().toString().padStart(2, "0");
-      const year = pushed.getFullYear().toString().slice(-2);
+      const month = pushed.month;
+      const day = pushed.day;
+      const year = pushed.year.slice(-2);
 
       pushedLabel = `${month}/${day}/${year}`;
     }
